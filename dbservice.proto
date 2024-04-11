@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+message DB_PING_REQ
+{
+    int64   Timestamp = 1;
+};
+
+message DB_PING_RESP
+{
+    int64   TimeStamp = 1;
+};
