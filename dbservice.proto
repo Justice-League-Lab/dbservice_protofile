@@ -9,3 +9,18 @@ message DB_PING_RESP
 {
     int64   TimeStamp = 1;
 };
+
+/*
+    tick 值每次 +1 和时间戳形成双重校验
+*/
+message DB_HEART_BEAT_REQ
+{
+    int64   Timestamp = 1;  // 时间戳
+    int32   Tick = 2;       // tick值
+};
+
+message DB_HEART_BEAT_RESP
+{
+    int64   Timestamp = 1;  // 时间戳
+    int32   Ticl = 2;       // tick值
+};
