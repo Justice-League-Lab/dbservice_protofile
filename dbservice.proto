@@ -3,6 +3,7 @@ syntax = "proto3";
 
 option go_package = "./;pb";
 
+
 message DB_PING_REQ
 {
     int64   Timestamp = 1;
