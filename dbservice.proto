@@ -14,17 +14,54 @@ message DB_PING_RESP
     int64   TimeStamp = 1;
 };
 
-/*
-    tick 值每次 +1 和时间戳形成双重校验
-*/
 message DB_HEART_BEAT_REQ
 {
     int64   Timestamp = 1;  // 时间戳
-    int32   Tick = 2;       // tick值
 };
 
 message DB_HEART_BEAT_RESP
 {
     int64   Timestamp = 1;  // 时间戳
-    int32   Ticl = 2;       // tick值
+};
+
+
+//////////////////////////////////
+//////////////////////////////////
+//////////////////////////////////
+
+message CommRespData
+{
+    bool    Status  = 1; // 响应状态
+    string  Msg     = 2; // 响应信息
+};
+
+message RedisConfig
+{
+    string  RedisIP     = 1;
+    int32   RedisPort   = 2;
+};
+
+message MysqlConfig
+{
+    string  IP     = 1;
+    int32   Port   = 2;
+    string  Username = 3;
+    string  Password = 4;
+    string  DBName  = 5;
+};
+
+//////////////////////////////////
+
+/* 初始化服务配置 */
+message DB_INIT_DYNAIMC_CONFIG_REQ
+{
+    RedisConfig RedisCfg = 1;   // redis connect info
+    MysqlConfig MysqlCfg = 2;   // mysql connect info
+};
+
+message DB_INIT_DYNAMIC_CONFIG_RESP
+{
+    CommRespData    CommData          = 1;
+    bool            RedisConnInitSucc = 2;  // db service connect redis succ
+    bool            MysqlConnInitSucc = 3;  // db service connect mysql succ
 };
