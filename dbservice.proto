@@ -64,4 +64,19 @@ message DB_INIT_DYNAMIC_CONFIG_RESP
     CommRespData    CommData          = 1;
     bool            RedisConnInitSucc = 2;  // db service connect redis succ
     bool            MysqlConnInitSucc = 3;  // db service connect mysql succ
+};                     
+
+message DB_LOAD_ROLE_DATA_REQ
+{
+    string          RoleId = 1;
+};
+
+message DB_LOAD_ROLE_DATA_RESP
+{
+    string          RoleId = 1;
+    int32           nLevel = 2;
+    int32           Field1 = 3;
+    string          ByteArray1 = 4;
+    string          ByteArray2 = 5;
+
 };
