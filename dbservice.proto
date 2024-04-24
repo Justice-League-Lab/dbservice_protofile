@@ -29,6 +29,11 @@ message DB_HEART_BEAT_RESP
 //////////////////////////////////
 //////////////////////////////////
 
+message CommReqData
+{
+    int32 ServerId = 1; // 服务器id
+};
+
 message CommRespData
 {
     bool    Status  = 1; // 响应状态
@@ -50,6 +55,16 @@ message MysqlConfig
     string  DBName  = 5;
 };
 
+message RoleData
+{
+    string          RoleName        = 2;
+    string          Account         = 3;
+    string          EquipBaseData   = 4;
+    string          EquipExtData    = 5;
+    string          ItemData        = 6;
+    string          PetData         = 7;
+};
+
 //////////////////////////////////
 
 /* 初始化服务配置 */
@@ -66,17 +81,39 @@ message DB_INIT_DYNAMIC_CONFIG_RESP
     bool            MysqlConnInitSucc = 3;  // db service connect mysql succ
 };                     
 
+/* 取所有玩家密码 */
+message DB_GET_ALL_ROLE_PWD_REQ
+{
+    CommReqData     CommData    = 1;
+};
+
+message DB_GET_ALL_ROLE_PWD_RESP
+{
+    repeated string          Pwd = 1;
+};
+
+/* 创建一个新角色 */
+message DB_CREATE_ROLE_REQ
+{
+    CommReqData     CommData        = 1;
+    RoleData        RoleData        = 2;
+};
+
+message DB_CREATE_ROLE_RESP
+{
+    CommRespData    CommData    = 1;
+};
+
+
+/* 请求角色数据 */
 message DB_LOAD_ROLE_DATA_REQ
 {
-    string          RoleId = 1;
+    CommReqData     CommData    = 1;
+    int32           RoleId      = 2;
 };
 
 message DB_LOAD_ROLE_DATA_RESP
 {
-    string          RoleId = 1;
-    int32           nLevel = 2;
-    int32           Field1 = 3;
-    string          ByteArray1 = 4;
-    string          ByteArray2 = 5;
-
+    CommRespData    CommData    = 1;
+    RoleData        RoleData    = 2;
 };
